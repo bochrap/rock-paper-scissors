@@ -9,6 +9,9 @@ let computerSelection = "";
 let user_score = 0;
 let computer_score = 0;
 
+let user_score_graphic = [];
+let computer_score_graphic = [];
+
 function playRound(playerSelection, computerSelection) {
     
     playerSelection = prompt("Enter your selection:").toLowerCase();
@@ -20,16 +23,19 @@ function playRound(playerSelection, computerSelection) {
 
     else if (playerSelection === "rock" && computerSelection === "paper") {
         computer_score += 1;
+        computer_score_graphic.push("X");
         return result = "You lose! Paper beats rock :(";
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors") {
         user_score += 1;
+        user_score_graphic.push("X");
         return result = "You win! Rock beats scissors";
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock") {
         user_score += 1;
+        user_score_graphic.push("X");
         return result = "You win! Paper beats rock!";
     }
 
@@ -39,16 +45,19 @@ function playRound(playerSelection, computerSelection) {
 
     else if (playerSelection === "paper" && computerSelection === "scissors") {
         computer_score += 1;
+        computer_score_graphic.push("X");
         return result = "You lose! Scissors beat paper :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock") {
         computer_score += 1;
+        computer_score_graphic.push("X");
         return result = "You lose! Rock beats scissors :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper") {
         user_score += 1;
+        user_score_graphic.push("X");
         return result = "You win! Scissors beat paper!";
     }
 
@@ -70,9 +79,11 @@ function game() {
     for (let i = 0; i < 5; i++) {
         playRound(playerSelection, computerSelection);
         console.log(result);
+
+        console.log(`User score: ${user_score_graphic}`)
+        console.log(`Computer score: ${computer_score_graphic}`)
     }
-    console.log(`Computer score: ${computer_score}`)
-    console.log(`User score: ${user_score}`)
+    
 
     if (user_score > computer_score) {
         console.log("You win!!!")
@@ -88,5 +99,7 @@ function game() {
 
     user_score = 0;
     computer_score = 0;
+    computer_score_graphic=[];
+    user_score_graphic=[];
 
 }
