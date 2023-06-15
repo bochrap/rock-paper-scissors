@@ -66,7 +66,7 @@ function playRound(playerSelection, computerSelection) {
     }
 
     else {
-        return "Please make a valid selection!"
+        return  result = "Please make a valid selection!";
     }
 
     
@@ -76,6 +76,7 @@ function playRound(playerSelection, computerSelection) {
 
 
 function game() {
+    clear();
     for (let i = 0; i < 5; i++) {
         playRound(playerSelection, computerSelection);
         console.log(result);
@@ -90,7 +91,7 @@ function game() {
     }
 
     else if (computer_score > user_score) {
-        comsole.log("You lose :(((")
+        console.log("You lose :(((")
     }
 
     else {
