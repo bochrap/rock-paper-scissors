@@ -10,8 +10,8 @@ let playerSelection = "";
 let computerSelection = ""; 
 
 //variables keeping track of the score
-let user_score = 0;
-let computer_score = 0;
+//let user_score = 0;
+//let computer_score = 0;
 
 //arrays holding X's as simple graphic for game played in console
 let user_score_graphic = [];
@@ -19,6 +19,13 @@ let computer_score_graphic = [];
 
 const results = document.getElementById('results');
 results.textContent = "This is the space for results";
+
+const user_score = document.getElementById("user_score");
+const computer_score = document.getElementById("computer_score");
+
+user_score.textContent = "USER SCORE: ";
+computer_score.textContent = "COMPUTER SCORE: ";
+
 
 //Play a round of game by taking selection for both players
 function playRound(playerSelection, computerSelection) {
@@ -36,21 +43,21 @@ function playRound(playerSelection, computerSelection) {
     }
 
     else if (playerSelection === "rock" && computerSelection === "paper") {
-        computer_score += 1;
+        computer_score.textContent += "X";
         computer_score_graphic.push("X");
         results.textContent = "You lose! Paper beats rock :(";
         return result = "You lose! Paper beats rock :(";
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        user_score += 1;
+        user_score.textContent += "X";
         user_score_graphic.push("X");
         results.textContent = "You win! Rock beats scissors";
         return result = "You win! Rock beats scissors";
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        user_score += 1;
+        user_score.textContent += "X";
         user_score_graphic.push("X");
         results.textContent = "You win! Paper beats rock!";
         return result = "You win! Paper beats rock!";
@@ -62,21 +69,21 @@ function playRound(playerSelection, computerSelection) {
     }
 
     else if (playerSelection === "paper" && computerSelection === "scissors") {
-        computer_score += 1;
+        computer_score.textContent += "X";
         computer_score_graphic.push("X");
         results.textContent = "You lose! Scissors beat paper :(";
         return result = "You lose! Scissors beat paper :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock") {
-        computer_score += 1;
+        computer_score.textContent += "X";
         computer_score_graphic.push("X");
         results.textContent = "You lose! Rock beats scissors :(";
         return result = "You lose! Rock beats scissors :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        user_score += 1;
+        user_score.textContent += "X";
         user_score_graphic.push("X");
         results.textContent = "You win! Scissors beat paper!";
         return result = "You win! Scissors beat paper!";
