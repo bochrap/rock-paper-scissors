@@ -10,8 +10,8 @@ let playerSelection = "";
 let computerSelection = ""; 
 
 //variables keeping track of the score
-//let user_score = 0;
-//let computer_score = 0;
+let user_score_track = 0;
+let computer_score_track = 0;
 
 //arrays holding X's as simple graphic for game played in console
 let user_score_graphic = [];
@@ -20,11 +20,19 @@ let computer_score_graphic = [];
 const results = document.getElementById('results');
 results.textContent = "This is the space for results";
 
+const whos_winner = document.getElementById('whos_winner');
+whos_winner.textContent = "";
+
 const user_score = document.getElementById("user_score");
 const computer_score = document.getElementById("computer_score");
 
 user_score.textContent = "USER SCORE: ";
 computer_score.textContent = "COMPUTER SCORE: ";
+
+const restart = document.getElementById("restart");
+restart.style.visibility = "hidden";
+
+
 
 
 //Play a round of game by taking selection for both players
@@ -39,66 +47,53 @@ function playRound(playerSelection, computerSelection) {
 //define winning conditions for each of the combintions, return result, add score and score graphic 
     if (playerSelection === "rock" && computerSelection === "rock") {
         results.textContent = "DRAW!";
-        return result = "DRAW!";
     }
 
     else if (playerSelection === "rock" && computerSelection === "paper") {
-        computer_score.textContent += "X";
-        computer_score_graphic.push("X");
+        computer_score.textContent += "X ";
+        computer_score_track += 1;
         results.textContent = "You lose! Paper beats rock :(";
-        return result = "You lose! Paper beats rock :(";
     }
 
     else if (playerSelection === "rock" && computerSelection === "scissors") {
-        user_score.textContent += "X";
-        user_score_graphic.push("X");
+        user_score.textContent += "X ";
+        user_score_track += 1;
         results.textContent = "You win! Rock beats scissors";
-        return result = "You win! Rock beats scissors";
     }
 
     else if (playerSelection === "paper" && computerSelection === "rock") {
-        user_score.textContent += "X";
-        user_score_graphic.push("X");
+        user_score.textContent += "X ";
+        user_score_track += 1;
         results.textContent = "You win! Paper beats rock!";
-        return result = "You win! Paper beats rock!";
     }
 
     else if (playerSelection === "paper" && computerSelection === "paper") {
         results.textContent = "DRAW!";
-        return result = "DRAW!";
     }
 
     else if (playerSelection === "paper" && computerSelection === "scissors") {
-        computer_score.textContent += "X";
-        computer_score_graphic.push("X");
+        computer_score.textContent += "X ";
+        computer_score_track += 1;
         results.textContent = "You lose! Scissors beat paper :(";
-        return result = "You lose! Scissors beat paper :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "rock") {
-        computer_score.textContent += "X";
-        computer_score_graphic.push("X");
+        computer_score.textContent += "X ";
+        computer_score_track += 1;
         results.textContent = "You lose! Rock beats scissors :(";
-        return result = "You lose! Rock beats scissors :(";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "paper") {
-        user_score.textContent += "X";
-        user_score_graphic.push("X");
+        user_score.textContent += "X ";
+        user_score_track += 1;
         results.textContent = "You win! Scissors beat paper!";
-        return result = "You win! Scissors beat paper!";
     }
 
     else if (playerSelection === "scissors" && computerSelection === "scissors") {
         results.textContent = "DRAW!";
-        return result = "DRAW!";
-    }
-//option in case player's selection is invalid
-    else {
-        return  result = "Please make a valid selection!";
     }
 
-
+ check_score();
     
 
 };
@@ -136,14 +131,20 @@ function game() {
 }
 
 const buttons = document.querySelectorAll('button');
-/*
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log("JEBjebJEB!!!");
-    });
-});
+const play_again = document.getElementById('restart');
 
-*/
+play_again.addEventListener('click', (e) => {
+    user_score_track = 0;
+    computer_score_track = 0;
+
+    user_score.textContent = "USER SCORE: ";
+    computer_score.textContent = "COMPUTER SCORE: ";
+    results.textContent = "This is the space for results";
+    whos_winner.textContent = "";
+
+    restart.style.visibility = "hidden";
+    document.getElementById("interface").style.visibility = "visible";
+});
 
 buttons.forEach((button) => {
     button.addEventListener('click', (e) => {
@@ -152,12 +153,27 @@ buttons.forEach((button) => {
         //console.log(playerSelection)
 
         playRound(playerSelection, computerSelection);
-        console.log(result);
     
 
     });
 });
 
+function check_score() {
+    if (user_score_track == 5) {
+        whos_winner.textContent = "You won!";
+        document.getElementById("interface").style.visibility = "hidden";
+        restart.style.visibility = "visible";
 
+        }
+
+    else if (computer_score_track == 5) {
+        whos_winner.textContent = "Computer won!";
+        document.getElementById("interface").style.visibility = "hidden";
+        restart.style.visibility = "visible";
+
+    }
+
+
+};
 
 
